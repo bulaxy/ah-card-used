@@ -11,6 +11,7 @@ const option = {
 
 function App() {
   const [urls, setUrls] = useState('')
+  const [disableSubmit, setDisableSubmit] = useState(false)
   const [filter, setFilter] = useState({
     zeroXp: true,
     upgraded: true,
@@ -32,6 +33,7 @@ function App() {
   };
 
   const onClick = async () => {
+    setDisableSubmit(true)
     const urlsArray = urls.split('\n')
     let cardList = await getCards(), responseJson, slots, previous;
     cardList = cardList.filter(o => !(o.type_code === 'treachery' || o.type_code === 'investigator'))
@@ -70,6 +72,7 @@ function App() {
     }
     cardList = removeAndMergeDuplicates(cardList, "name", "subname","usedCount");
     setFinalList(sortByKey(cardList, 'usedCount'))
+    setDisableSubmit(false)
   }
 
   const getCards = async () => {
@@ -131,7 +134,7 @@ function App() {
       <div>
         <textarea value={urls} onChange={(e) => setUrls(e.target.value)}></textarea>
       </div>
-      <button onClick={onClick}>Submit</button>
+      <button disabled={disableSubmit} onClick={onClick}>Submit</button> {disableSubmit?'Loading, please wait':''}
       <table>
         <tbody>
           {finalList
