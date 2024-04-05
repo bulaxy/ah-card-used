@@ -1,7 +1,7 @@
-export function removeAndMergeDuplicates(array, key1, key2, mergeField) {
+export function removeAndMergeDuplicates(array, key1, key2, key3, mergeField) {
   let mergedObjects = {};
   array.forEach(item => {
-    const key = item[key1] + "|" + item[key2];
+    const key = item[key1] + "|" + item[key2] + "|" + item[key3];
     if (mergedObjects[key]) {
       mergedObjects[key][mergeField] += item[mergeField];
     } else {
