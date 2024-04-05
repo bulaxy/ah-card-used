@@ -57,7 +57,6 @@ function App() {
         try {
           responseJson = await getData(previous)
           previous = responseJson.previous_deck;
-          console.log('a', responseJson.slots['01092'])
           slots = [...slots,...Object.keys(responseJson.slots)]
         } catch (error) {
           console.error("Error fetching data:", error);
