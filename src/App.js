@@ -141,7 +141,7 @@ function App() {
             .filter(card => filterRule(card, filter))
             .map(o => <tr id={o.code}>
               <td>
-                <a href={`https://arkhamdb.com/card/${o.code}`}>{o.name} ({o.xp}) {o.subname ? ` subtitle - ${o.subname}` : ''}</a>
+                <a href={`https://arkhamdb.com/card/${o.code}`}>{o.name} {o.subname ? ` subtitle - ${o.subname}` : ''}</a>
               </td>
               <td>
                 {o.usedCount}
